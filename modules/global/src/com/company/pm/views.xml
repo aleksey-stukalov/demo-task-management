@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
+    <view class="com.company.pm.entity.Task"
+          extends="_local"
+          name="task-view">
+        <property name="project"
+                  view="_minimal"/>
+        <property name="executor"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.pm.entity.Task"
+          extends="_local"
+          name="task-edit-view">
+        <property name="project"
+                  view="_local">
+            <property name="manager" view="_minimal"/>
+        </property>
+        <property name="executor"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.pm.entity.Project"
+          extends="_local"
+          name="project-browse-view">
+        <property name="manager"
+                  view="_minimal"/>
+    </view>
+    <view class="com.company.pm.entity.Project"
+          extends="_local"
+          name="project-edit-view">
+        <property name="manager"
+                  view="_minimal"/>
+        <property name="administrators"
+                  view="_minimal"/>
+        <property name="tasks"
+                  view="task-view"/>
+        <property name="goals"
+                  view="_minimal">
+            <property name="companyGoal"
+                      view="_minimal"/>
+        </property>
+    </view>
+    <view class="com.company.pm.entity.Project"
+          extends="_local"
+          name="project-dashboard-view">
+        <property name="tasks"
+                  view="_minimal">
+            <property name="estimation"/>
+            <property name="state"/>
+        </property>
+    </view>
+</views>

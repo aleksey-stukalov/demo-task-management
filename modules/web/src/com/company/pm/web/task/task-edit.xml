@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.pm.web.task.TaskEdit"
+        datasource="taskDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.pm.web.task">
+    <dsContext>
+        <datasource id="taskDs"
+                    class="com.company.pm.entity.Task"
+                    view="task-edit-view"/>
+        <collectionDatasource id="projectsDs"
+                              class="com.company.pm.entity.Project"
+                              view="_minimal">
+            <query>
+                <![CDATA[select e from pm$Project e]]>
+            </query>
+        </collectionDatasource>
+        <collectionDatasource id="executorsOptionsDs" class="com.haulmont.cuba.security.entity.User" view="_minimal">
+            <query>
+                <![CDATA[select u from sec$User u join u.userRoles ur where ur.role.name = 'Executor']]>
+            </query>
+
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <hbox spacing="true">
+            <fieldGroup id="fieldGroup"
+                        datasource="taskDs">
+                <column width="250px">
+                    <field property="name"/>
+                    <field optionsDatasource="projectsDs"
+                           property="project"/>
+                    <field property="executor" optionsDatasource="executorsOptionsDs"/>
+                    <field property="estimation"/>
+                    <field property="startDate"/>
+                    <field property="endDate"/>
+                    <field editable="false"
+                           property="state"/>
+                </column>
+            </fieldGroup>
+            <groupBox id="procActionsGroupBox" caption="msg://processActions">
+                <frame id="procActionsFrame"
+                       screen="procActionsFrame"/>
+            </groupBox>
+        </hbox>
+        <vbox spacing="true">
+            <richTextArea id="descriptionTextArea"
+                    caption="msg://com.company.pm.entity/Task.description"
+                          datasource="taskDs"
+                          height="300px"
+                          property="description"
+                          width="600px"/>
+        </vbox>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
+    <menu id="application-pm"
+          insertBefore="bpm">
+        <item screen="pm$Project.browse"/>
+        <item screen="pm$Task.browse"/>
+        <item screen="pm$MyTasks.browse"/>
+        <item screen="pm$CompanyGoal.browse"/>
+        <item screen="pmdashboard"/>
+        <item id="pmProcTasks"
+              screen="bpm$ProcTask.lookup"/>
+    </menu>
+</menu-config>

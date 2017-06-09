@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="com.company.pm.web.companygoal.CompanyGoalBrowse"
+        focusComponent="companyGoalsTable"
+        lookupComponent="companyGoalsTable"
+        messagesPack="com.company.pm.web.companygoal">
+    <dsContext>
+        <collectionDatasource id="companyGoalsDs"
+                         class="com.company.pm.entity.CompanyGoal"
+                         view="_local">
+            <query>
+                <![CDATA[select e from pm$CompanyGoal e]]>
+            </query>
+        </collectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="companyGoalsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="companyGoalsTable"
+                datasource="companyGoalsDs">
+            <properties include=".*"/>
+        </filter>
+        <table id="companyGoalsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+            </actions>
+            <columns>
+                <column id="name"/>
+            </columns>
+            <rows datasource="companyGoalsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="companyGoalsTable.create"/>
+                <button id="editBtn"
+                        action="companyGoalsTable.edit"/>
+                <button id="removeBtn"
+                        action="companyGoalsTable.remove"/>
+            </buttonsPanel>
+        </table>
+    </layout>
+</window>

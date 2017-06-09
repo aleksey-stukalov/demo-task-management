@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <include file="com/company/pm/screens.xml"/>
+    <screen id="pm$CompanyGoal.browse"
+            template="com/company/pm/web/companygoal/company-goal-browse.xml"/>
+    <screen id="pm$CompanyGoal.edit"
+            template="com/company/pm/web/companygoal/company-goal-edit.xml"/>
+    <screen id="pm$Task.browse"
+            template="com/company/pm/web/task/task-browse.xml"/>
+    <screen id="pm$Task.edit"
+            template="com/company/pm/web/task/task-edit.xml"/>
+    <screen id="pm$Project.browse"
+            template="com/company/pm/web/project/project-browse.xml"/>
+    <screen id="pm$Project.edit"
+            template="com/company/pm/web/project/project-edit.xml"/>
+    <screen id="pm$MyTasks.browse"
+            template="com/company/pm/web/mytasks/my-task-browse.xml"/>
+    <screen id="pmdashboard"
+            template="com/company/pm/web/pmdashboard/pm-dashboard.xml"/>
+    <screen id="mainWindow"
+            template="com/company/pm/web/screens/ext-mainwindow.xml"/>
+</screen-config>

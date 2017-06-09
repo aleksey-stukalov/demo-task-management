@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="com.company.pm.web.project.ProjectEdit"
+        datasource="projectDs"
+        focusComponent="fieldGroup"
+        messagesPack="com.company.pm.web.project"
+        xmlns:chart="http://schemas.haulmont.com/charts/charts.xsd">
+    <dsContext>
+        <datasource id="projectDs"
+                    class="com.company.pm.entity.Project"
+                    view="project-edit-view">
+            <collectionDatasource id="administratorsDs"
+                                  property="administrators"/>
+            <collectionDatasource id="tasksDs"
+                                  property="tasks"/>
+            <collectionDatasource id="goalsDs"
+                                  property="goals"/>
+        </datasource>
+        <collectionDatasource id="usersDs"
+                              class="com.haulmont.cuba.security.entity.User"/>
+        <collectionDatasource id="companyGoalsDs"
+                              class="com.company.pm.entity.CompanyGoal"/>
+        <valueCollectionDatasource id="tasksGraphDs">
+            <properties>
+                <property class="com.haulmont.cuba.security.entity.User"
+                          name="executor"/>
+                <property datatype="int"
+                          name="estimation"/>
+            </properties>
+        </valueCollectionDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="tabsheet"
+            spacing="true">
+        <tabSheet id="tabsheet">
+            <tab id="mainTab"
+                 caption="msg://mainTab"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <scrollBox id="scrollbox" orientation="vertical" height="100%">
+                    <hbox spacing="true" height="120px">
+                        <fieldGroup id="fieldGroup"
+                                    datasource="projectDs">
+                            <column width="250px">
+                                <field property="name"/>
+                                <field property="manager"/>
+                                <field property="state" editable="false"/>
+                            </column>
+                        </fieldGroup>
+                        <vbox height="100%" width="300px">
+                            <scrollBox orientation="vertical" height="100%">
+                                <tokenList datasource="administratorsDs"
+                                           caption="msg://com.company.pm.entity/Project.administrators">
+                                    <lookup optionsDatasource="usersDs"/>
+                                </tokenList>
+                                <vbox id="spring"/>
+                            </scrollBox>
+                        </vbox>
+                        <groupBox id="procActionsGroupBox" caption="msg://processActions" width="200px">
+                            <button id="startBtn"
+                                    caption="msg://startProcess"
+                                    invoke="startProcess"/>
+                            <frame id="procActionsFrame"
+                                   screen="procActionsFrame"/>
+                        </groupBox>
+                    </hbox>
+                    <hbox spacing="true" height="300px" width="100%">
+                        <richTextArea caption="msg://com.company.pm.entity/Project.description"
+                                      datasource="projectDs"
+                                      height="100%"
+                                      property="description"
+                                      width="100%"/>
+                        <groupBox id="goalsBox" height="100%"
+                                  width="100%"
+                                  caption="msg://com.company.pm.entity/Project.goals">
+                            <table id="goalsTable"
+                                   editable="true"
+                                   height="100%"
+                                   width="100%">
+                                <actions>
+                                    <action id="add"
+                                            caption="mainMsg://actions.Add"
+                                            invoke="addGoal"/>
+                                    <action id="remove"/>
+                                </actions>
+                                <columns>
+                                    <column id="name"
+                                            editable="true"/>
+                                    <column id="companyGoal"
+                                            editable="true"
+                                            optionsDatasource="companyGoalsDs"/>
+                                </columns>
+                                <rows datasource="goalsDs"/>
+                                <buttonsPanel>
+                                    <button action="goalsTable.add"/>
+                                    <button action="goalsTable.remove"/>
+                                </buttonsPanel>
+                            </table>
+                        </groupBox>
+
+                    </hbox>
+                    <groupBox id="tasksBox"
+                              caption="msg://com.company.pm.entity/Project.tasks"
+                              height="300px">
+                        <table id="tasksTable"
+                               height="100%"
+                               width="100%">
+                            <actions>
+                                <action id="create"/>
+                                <action id="edit"/>
+                                <action id="remove"/>
+                            </actions>
+                            <columns>
+                                <column id="name"/>
+                                <column id="executor"/>
+                                <column id="state"/>
+                            </columns>
+                            <rows datasource="tasksDs"/>
+                            <buttonsPanel>
+                                <button action="tasksTable.create"/>
+                                <button action="tasksTable.edit"/>
+                                <button action="tasksTable.remove"/>
+                            </buttonsPanel>
+                        </table>
+                    </groupBox>
+                </scrollBox>
+            </tab>
+            <tab id="chartTab"
+                 caption="msg://chartsTab"
+                 margin="true,false,false,false"
+                 spacing="true">
+                <chart:serialChart categoryField="executor"
+                                   datasource="tasksGraphDs">
+                    <chart:valueAxes>
+                        <chart:axis
+                                minimum="0"/>
+                    </chart:valueAxes>
+                    <chart:graphs>
+                        <chart:graph type="COLUMN"
+                                     fillAlphas="1"
+                                     valueField="estimation"/>
+                    </chart:graphs>
+                </chart:serialChart>
+            </tab>
+        </tabSheet>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>
