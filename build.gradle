@@ -18,8 +18,6 @@ buildscript {
             url 'http://maven.vaadin.com/vaadin-addons'
         }
         
-        
-        
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
