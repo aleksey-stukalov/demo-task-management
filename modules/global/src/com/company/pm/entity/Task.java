@@ -30,8 +30,9 @@ public class Task extends StandardEntity {
     @Column(name = "NAME", nullable = false)
     protected String name;
 
+    @NotNull
     @Lookup(type = LookupType.DROPDOWN, actions = {"clear", "open", "lookup"})
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "PROJECT_ID")
     protected Project project;
 

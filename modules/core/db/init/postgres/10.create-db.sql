@@ -45,7 +45,7 @@ create table PM_TASK (
     DELETED_BY varchar(50),
     --
     NAME varchar(255) not null,
-    PROJECT_ID uuid,
+    PROJECT_ID uuid not null,
     EXECUTOR_ID uuid not null,
     ESTIMATION integer,
     DESCRIPTION text,

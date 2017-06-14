@@ -2,6 +2,7 @@ package com.company.pm.web.task;
 
 import com.company.pm.core.WfConstants;
 import com.company.pm.entity.ProjectState;
+import com.company.pm.entity.TaskState;
 import com.company.pm.service.WorkflowService;
 import com.haulmont.bpm.gui.procactions.ProcActionsFrame;
 import com.haulmont.cuba.core.global.PersistenceHelper;
@@ -72,15 +73,16 @@ public class TaskEdit extends AbstractEditor<Task> {
             fieldGroup.getFieldNN("name").setEditable(true);
             fieldGroup.getFieldNN("executor").setEditable(true);
             descriptionTextArea.setEditable(true);
-            switch (getItem().getState()) {
-                case ESTIMATED:
+            if (TaskState.ESTIMATED.equals(getItem().getState())) {
+//            switch (getItem().getState()) {
+//                case ESTIMATED:
                     if (getItem().getProject().getState() == ProjectState.EXECUTION) {
                         fieldGroup.getFieldNN("startDate").setRequired(true);
                         fieldGroup.getFieldNN("startDate").setEditable(true);
                         fieldGroup.getFieldNN("endDate").setEditable(true);
                         fieldGroup.getFieldNN("endDate").setRequired(true);
                     }
-                    break;
+//                    break;
             }
         }
     }
