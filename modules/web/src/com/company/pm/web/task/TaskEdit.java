@@ -63,11 +63,12 @@ public class TaskEdit extends AbstractEditor<Task> {
             fieldGroup.getFieldNN("executor").setEditable(true);
             descriptionTextArea.setEditable(true);
         } else if (userSession.getCurrentOrSubstitutedUser().equals(getItem().getExecutor())) {
-            switch (getItem().getState()) {
-                case ESTIMATION:
+            if (TaskState.ESTIMATED.equals(getItem().getState())) {
+//            switch (getItem().getState()) {
+//                case ESTIMATION:
                     fieldGroup.getFieldNN("estimation").setEditable(true);
                     fieldGroup.getFieldNN("estimation").setRequired(true);
-                    break;
+//                    break;
             }
         } else if (userSession.getCurrentOrSubstitutedUser().equals(getItem().getProject().getManager())) {
             fieldGroup.getFieldNN("name").setEditable(true);
