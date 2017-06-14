@@ -104,6 +104,7 @@ public class ProjectEdit extends AbstractEditor<Project> {
             });
             tasksTable.getActions().forEach(action -> action.setEnabled(false));
             goalsTable.getActions().forEach(action -> action.setEnabled(false));
+            procActionsFrame.setEnabled(false);
         }
     }
 
