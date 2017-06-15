@@ -7,4 +7,7 @@
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
+    <!-- Temporary fix for BPM issue if the application is deployed using Single WAR option -->
+    <bean id="bpmFileDownloadController"
+          class="com.company.pm.bpm.SingleWarBpmFileDownloadController"/>
 </beans>
