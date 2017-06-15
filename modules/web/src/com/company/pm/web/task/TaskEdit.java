@@ -2,17 +2,18 @@ package com.company.pm.web.task;
 
 import com.company.pm.core.WfConstants;
 import com.company.pm.entity.ProjectState;
+import com.company.pm.entity.Task;
 import com.company.pm.entity.TaskState;
 import com.company.pm.service.WorkflowService;
 import com.haulmont.bpm.gui.procactions.ProcActionsFrame;
 import com.haulmont.cuba.core.global.PersistenceHelper;
-import com.haulmont.cuba.gui.components.*;
-import com.company.pm.entity.Task;
+import com.haulmont.cuba.gui.components.AbstractEditor;
+import com.haulmont.cuba.gui.components.FieldGroup;
+import com.haulmont.cuba.gui.components.GroupBoxLayout;
+import com.haulmont.cuba.gui.components.RichTextArea;
 import com.haulmont.cuba.security.global.UserSession;
 
 import javax.inject.Inject;
-import javax.inject.Named;
-import java.util.Arrays;
 
 public class TaskEdit extends AbstractEditor<Task> {
 
